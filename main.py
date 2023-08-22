@@ -1,9 +1,12 @@
 from kivy.app import App
 from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
+
+class FirstScreen(BoxLayout):
+    pass
 
 class MyApp(App):
-    def build(self):
-        pass
+    pass
 
 if __name__ == "__main__":
     MyApp().run()
