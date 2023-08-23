@@ -3,9 +3,18 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
+import sqlite3
+
 
 class CrearScreen(Screen):
-    pass
+    def crear_tabla(self):
+        conn = sqlite3.connect('Notas.db')
+        cursor = conn.cursor()
+        
+        cursor.execute("""CREATE TABLE Programacion 
+                    (ID integer primary key, name text, apellido text, cedula integer, correo text)""")
+        conn.commit()
+        conn.close()
 
 class VerScreen(Screen):
     pass

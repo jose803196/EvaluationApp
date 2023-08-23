@@ -2,7 +2,8 @@
     BoxLayout:
         orientation: "vertical"
         Button:
-            text: "CREAR"
+            text: "Crear Lista"
+            on_release: root.crear_tabla()
         Button:
             text: "Volver a principal"
             on_press: root.manager.current = 'start'
