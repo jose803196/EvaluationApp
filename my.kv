@@ -1,9 +1,39 @@
-FisrtScreen:
-<FisrtScreen@BoxLayout>:
-    orientation: "vertical"
-    Button:
-        text: "Crear Tabla"
-    Button:
-        text: "Ver Notas"
-    Button:
-        text: "Actualizar Notas"
+<CrearScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "CREAR"
+        Button:
+            text: "Volver a principal"
+            on_press: root.manager.current = 'start'
+
+<VerScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "LEER"
+        Button:
+            text: "Volver a principal"
+            on_press: root.manager.current = 'start'
+
+<EditarScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "EDITO"
+        Button:
+            text: "Volver a principal"
+            on_press: root.manager.current = 'start'
+
+<PrinScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "Crear tabla"
+            on_press: root.manager.current = 'crear'
+        Button:
+            text: "Ver notas"
+            on_press: root.manager.current = 'ver'
+        Button:
+            text: "Actualizar notas"
+            on_press: root.manager.current = 'editar'
