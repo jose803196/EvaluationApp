@@ -2,7 +2,7 @@
     BoxLayout:
         orientation: "vertical"
         Button:
-            text: "Crear Lista"
+            text: 'Create'
             on_release: root.crear_tabla()
         Button:
             text: "Volver a principal"
@@ -32,9 +32,12 @@
         Button:
             text: "Crear tabla"
             on_press: root.manager.current = 'crear'
+            background_color: (1,0.976470,0.050980,1)
         Button:
             text: "Ver notas"
             on_press: root.manager.current = 'ver'
+            background_color: (0,0,1,1)
         Button:
             text: "Actualizar notas"
             on_press: root.manager.current = 'editar'
+            background_color: (1,0,0,1)
