@@ -1,34 +1,56 @@
 <CrearScreen>:
-    BoxLayout:
+    FloatLayout:
         orientation: "vertical"
         Button:
             text: 'Create'
-            on_release: root.crear_tabla()
-        Button:
-            text: "Volver a principal"
+            size_hint: (1.0,0.8)
+            pos_hint: {'y':0.2}
+            on_release: 
+                root.crear_tabla()
+        RoundedButton:
+            size_hint: (0.2,0.2)
             on_release:
                 root.manager.current = 'start'
                 root.manager.transition.direction = 'right'
+
+<RoundedButton@Button>
+    text: 'Volver'
+    canvas:
+        Color:
+            rgb: 1,1,0
+
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [100]
+
 <VerScreen>:
     BoxLayout:
         orientation: "vertical"
         Button:
-            text: "LEER"
-        Button:
-            text: "Volver a principal"
+            text: 'Read'
+            size_hint: (1.0,0.8)
+            pos_hint: {'y':0.2}
+        RoundedButton:
+            text: "Volver"
+            size_hint: (0.2,0.2)
             on_release:
                 root.manager.current = 'start'
                 root.manager.transition.direction = 'right'
+
 <EditarScreen>:
     BoxLayout:
         orientation: "vertical"
         Button:
-            text: "EDITO"
-        Button:
-            text: "Volver a principal"
+            text: 'Edit'
+            size_hint: (1.0,0.8)
+            pos_hint: {'y':0.2}
+        RoundedButton:
+            text: "Volver"
+            size_hint: (0.2,0.2)
             on_release:
                 root.manager.current = 'start'
-                root.manager.transition.direction = 'right' 
+                root.manager.transition.direction = 'right'
 
 <PrinScreen>:
     BoxLayout:
