@@ -6,8 +6,9 @@
             on_release: root.crear_tabla()
         Button:
             text: "Volver a principal"
-            on_press: root.manager.current = 'start'
-
+            on_release:
+                root.manager.current = 'start'
+                root.manager.transition.direction = 'right'
 <VerScreen>:
     BoxLayout:
         orientation: "vertical"
@@ -15,8 +16,9 @@
             text: "LEER"
         Button:
             text: "Volver a principal"
-            on_press: root.manager.current = 'start'
-
+            on_release:
+                root.manager.current = 'start'
+                root.manager.transition.direction = 'right'
 <EditarScreen>:
     BoxLayout:
         orientation: "vertical"
@@ -24,20 +26,28 @@
             text: "EDITO"
         Button:
             text: "Volver a principal"
-            on_press: root.manager.current = 'start'
+            on_release:
+                root.manager.current = 'start'
+                root.manager.transition.direction = 'right' 
 
 <PrinScreen>:
     BoxLayout:
         orientation: "vertical"
         Button:
             text: "Crear tabla"
-            on_press: root.manager.current = 'crear'
+            on_release:
+                root.manager.current = 'crear'
+                root.manager.transition.direction = 'left'
             background_color: (1,0.976470,0.050980,1)
         Button:
             text: "Ver notas"
-            on_press: root.manager.current = 'ver'
+            on_release:
+                root.manager.current = 'ver'
+                root.manager.transition.direction = 'left'
             background_color: (0,0,1,1)
         Button:
             text: "Actualizar notas"
-            on_press: root.manager.current = 'editar'
+            on_release:    
+                root.manager.current = 'editar'
+                root.manager.transition.direction = 'left'
             background_color: (1,0,0,1)
