@@ -12,9 +12,9 @@ from sqlite3 import OperationalError
 
 
 class CrearScreen(Screen):
-    def crear_tabla(self):
+    def crear_tabla(self,nombreinput):
         try:
-            conn = sqlite3.connect('Notas.db')
+            conn = sqlite3.connect(self.ids.nombreinput.text+'.db')
             cursor = conn.cursor()
             cursor.execute("""CREATE TABLE Programacion 
                         (ID integer primary key, name text, apellido text, cedula integer, correo text)""")
@@ -22,6 +22,9 @@ class CrearScreen(Screen):
             conn.close()
         except OperationalError as e:
             pass
+    
+#    def imprimir(self, nombreinput):
+#        print("{}".format(self.ids.nombreinput.text))
 
 class VerScreen(Screen):
     pass
