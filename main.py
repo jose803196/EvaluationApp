@@ -17,14 +17,12 @@ class CrearScreen(Screen):
             conn = sqlite3.connect(self.ids.nombreinput.text+'.db')
             cursor = conn.cursor()
             cursor.execute("""CREATE TABLE Programacion 
-                        (ID integer primary key, name text, apellido text, cedula integer, correo text)""")
+                        (ID integer primary key, Name text, Apellido text, Cedula integer, Correo text)""")
             conn.commit()
             conn.close()
         except OperationalError as e:
             pass
-    
-#    def imprimir(self, nombreinput):
-#        print("{}".format(self.ids.nombreinput.text))
+
 
 class VerScreen(Screen):
     pass
@@ -37,6 +35,7 @@ class PrinScreen(Screen):
 
 class MyApp(App):
     def build(self):
+        self.title = 'Eva App'
         Window.clearcolor = (1,1,1,1)
         sm = ScreenManager()
         sm.add_widget(PrinScreen(name ='start'))
