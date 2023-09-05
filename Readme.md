@@ -10,5 +10,4 @@
     <li>Send information to cross email with their commits.</li>
 </ul>
 
-<img src="MainScreen.PNG" alt="Tux"/>
-
+<img src="MainScreen.PNG"/>
