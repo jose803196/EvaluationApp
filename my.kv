@@ -5,6 +5,8 @@
             size_hint: (1,0.2)
             pos_hint: {'x':0,'y':0.1}
             multiline: False
+            hint_text : "Name of database"
+            halign: "center"
         Button:
             text: 'Create'
             size_hint: (0.8,0.1)
@@ -27,21 +29,29 @@
         TextInput:
             multiline: False
             id: firstname
+            hint_text : "First name of student"
+            halign: "center"
         Label:
             text: "Last Name"
         TextInput:
             multiline: False
             id: lastname
+            hint_text : "Last name of student"
+            halign: "center"
         Label:
             text: "ID Number"
         TextInput:
             multiline: False
             id: cedula
+            hint_text : "ID of student"
+            halign: "center"
         Label:
             text: "E-mail"
         TextInput:
             multiline: False
             id: email
+            hint_text : "E-mail of student"
+            halign: "center"
         BoxLayout:
             RoundedButton:
                 size_hint_x: 0.4 
