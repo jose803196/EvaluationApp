@@ -12,7 +12,7 @@ from sqlite3 import OperationalError
 
 
 class CrearScreen(Screen):
-    def crear_tabla(self,nombreinput):
+    def create_table(self,nombreinput):
         try:
             conn = sqlite3.connect(self.ids.nombreinput.text+'.db')
             cursor = conn.cursor()
