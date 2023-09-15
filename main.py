@@ -23,6 +23,8 @@ class CrearScreen(Screen):
         except OperationalError as e:
             pass
 
+class FillScreen(Screen):
+    pass
 
 class VerScreen(Screen):
     pass
@@ -36,12 +38,13 @@ class PrinScreen(Screen):
 class MyApp(App):
     def build(self):
         self.title = 'Eva App'
-        Window.clearcolor = (1,1,1,1)
+        #Window.clearcolor = (1,1,1,1)
         sm = ScreenManager()
         sm.add_widget(PrinScreen(name ='start'))
         sm.add_widget(CrearScreen(name="crear"))
         sm.add_widget(VerScreen(name="ver"))
         sm.add_widget(EditarScreen(name="editar"))
+        sm.add_widget(FillScreen(name='fill'))
         return sm
 
 if __name__ == "__main__":
