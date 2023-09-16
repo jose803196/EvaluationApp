@@ -24,7 +24,11 @@ class CrearScreen(Screen):
             pass
 
 class FillScreen(Screen):
-    pass
+    def print(self):
+        fname = self.ids['firstname'].text
+        lname = self.ids['lastname'].text
+        cedula = int(self.ids['cedula'].text)
+        nail = self.ids['email'].text
 
 class VerScreen(Screen):
     pass
