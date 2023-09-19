@@ -16,6 +16,8 @@
                 root.manager.current = 'fill'
                 root.manager.transition.direction = 'left'
         RoundedButton:
+            text: 'Back'
+            bold: True
             size_hint: (0.2,0.1)
             on_release:
                 root.manager.current = 'start'
@@ -65,16 +67,13 @@
                     root.print()
 
 <RoundedButton@Button>
-    text: 'Back'
     canvas:
         Color:
-            rgb: 1,1,0
-
-        RoundedRectangle:
-            size: self.size
-            pos: self.pos
-            radius: [100,100]
-
+            rgba:(0,0,0,1)
+    RoundedRectangle:
+        size: self.size
+        pos: self.pos
+        radius: [(50,50),(50,50),(50,50),(50,50)]
 
 <VerScreen>:
     FloatLayout:
@@ -84,7 +83,8 @@
             size_hint: (0.8,0.1)
             pos_hint: {'y':0,'x':0.2}
         RoundedButton:
-            text: "Volver"
+            text: "Back"
+            bold: True
             size_hint: (0.2,0.1)
             on_release:
                 root.manager.current = 'start'
@@ -97,7 +97,8 @@
             size_hint: (0.8,0.1)
             pos_hint: {'y':0,'x':0.2}
         RoundedButton:
-            text: "Volver"
+            text: "Back"
+            bold: True
             size_hint: (0.2,0.1)
             on_release:
                 root.manager.current = 'start'
