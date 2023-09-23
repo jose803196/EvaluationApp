@@ -15,7 +15,7 @@
                 root.create_table(nombreinput)
                 root.manager.current = 'fill'
                 root.manager.transition.direction = 'left'
-        RoundedButton:
+        Button:
             text: 'Back'
             bold: True
             size_hint: (0.2,0.1)
@@ -55,7 +55,9 @@
             hint_text : "E-mail of student"
             halign: "center"
         BoxLayout:
-            RoundedButton:
+            Button:
+                text:"Back"
+                bold: True
                 size_hint_x: 0.4 
                 on_release:
                     root.manager.current = 'start'
@@ -64,16 +66,9 @@
                 text: 'Add student'
                 background_color: (0,1,0,1)
                 on_release:
-                    root.print()
-
-<RoundedButton@Button>
-    canvas:
-        Color:
-            rgba:(0,0,0,1)
-    RoundedRectangle:
-        size: self.size
-        pos: self.pos
-        radius: [(50,50),(50,50),(50,50),(50,50)]
+                    root.fill(nombreinput)
+    CrearScreen:
+        id: crear
 
 <VerScreen>:
     FloatLayout:
@@ -82,7 +77,7 @@
             text: 'Read'
             size_hint: (0.8,0.1)
             pos_hint: {'y':0,'x':0.2}
-        RoundedButton:
+        Button:
             text: "Back"
             bold: True
             size_hint: (0.2,0.1)
@@ -96,7 +91,7 @@
             text: 'Edit'
             size_hint: (0.8,0.1)
             pos_hint: {'y':0,'x':0.2}
-        RoundedButton:
+        Button:
             text: "Back"
             bold: True
             size_hint: (0.2,0.1)
