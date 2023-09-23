@@ -18,7 +18,7 @@ class CrearScreen(Screen):
             conn = sqlite3.connect(self.ids.nombreinput.text+'.db')
             cursor = conn.cursor()
             cursor.execute("""CREATE TABLE Programacion 
-                        (ID integer primary key, Name text, Apellido text, Cedula integer, Correo text)""")
+                        (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Apellido TEXT NOT NULL, Cedula INTEGER NOT NULL, Correo TEXT NOT NULL)""")
             conn.commit()
             conn.close()
         except OperationalError as e:
@@ -28,12 +28,12 @@ class FillScreen(Screen):
     def fill(self):
         fname = self.ids['firstname'].text
         lname = self.ids['lastname'].text
-        cedula = self.ids['cedula'].text
+        cedula = int(self.ids['cedula'].text)
         nail = self.ids['email'].text
 
         conn = sqlite3.connect('Base2.db')
         cursor = conn.cursor()
-        cursor.execute("""INSERT INTO Programacion (Name, Apellido, Cedula, Correo) VALUES ('fname','lname','cedula','nail')""")
+        cursor.execute("INSERT INTO Programacion (Name, Apellido, Cedula, Correo) VALUES (?,?,?,?)",(fname,lname,cedula,nail))
         conn.commit()
         conn.close()
 
