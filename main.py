@@ -25,11 +25,17 @@ class CrearScreen(Screen):
             pass
 
 class FillScreen(Screen):
-    def print(self):
+    def fill(self):
         fname = self.ids['firstname'].text
         lname = self.ids['lastname'].text
-        cedula = int(self.ids['cedula'].text)
+        cedula = self.ids['cedula'].text
         nail = self.ids['email'].text
+
+        conn = sqlite3.connect('Base2.db')
+        cursor = conn.cursor()
+        cursor.execute("""INSERT INTO Programacion (Name, Apellido, Cedula, Correo) VALUES ('fname','lname','cedula','nail')""")
+        conn.commit()
+        conn.close()
 
 class VerScreen(Screen):
     pass
