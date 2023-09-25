@@ -14,6 +14,6 @@
 <p>The option create has two screen, number one: Create Database and number two: Give the information.</p>
 
 
-<img src="images/MainScreen.PNG" />
-<img src= "images/CreateScreen.PNG" />
-<img img src= "images/FillScreen.PNG">
+<img src="images/MainScreen.PNG" alt = "Main Screen" width = "207"/>
+<img src= "images/CreateScreen.PNG" alt = "Create Screen" width = "200"/>
+<img img src= "images/FillScreen.PNG" alt = "Information Screen" width = "199">
