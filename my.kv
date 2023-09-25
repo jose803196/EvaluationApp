@@ -1,24 +1,25 @@
 <CrearScreen>:
     FloatLayout:
-        TextInput:
-            id: nombreinput
-            size_hint: (1,0.2)
-            pos_hint: {'x':0,'y':0.1}
-            multiline: False
-            hint_text : "Name of database"
-            halign: "center"
+        #TextInput:
+        #    id: nombreinput
+        #    size_hint: (1,0.2)
+        #    pos_hint: {'x':0,'y':0.1}
+        #    multiline: False
+        #    hint_text : "Name of database"
+        #    halign: "center"
         Button:
             text: 'Create'
-            size_hint: (0.8,0.1)
-            pos_hint: {'x': 0.2,'y': 0}
+            size_hint: (1,0.8)
+            pos_hint: {'x': 0,'y': 0.2}
+            background_color: (0,2,0,1)
             on_release: 
-                root.create_table(nombreinput)
+                root.create_table()
                 root.manager.current = 'fill'
                 root.manager.transition.direction = 'left'
         Button:
             text: 'Back'
             bold: True
-            size_hint: (0.2,0.1)
+            size_hint: (1,0.2)
             on_release:
                 root.manager.current = 'start'
                 root.manager.transition.direction = 'right'

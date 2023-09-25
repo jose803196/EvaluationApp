@@ -10,4 +10,10 @@
     <li>Send information to cross email with their commits.</li>
 </ul>
 
+<p>This App create a just database called "Base.db".</p>
+<p>The option create has two screen, number one: Create Database and number two: Give the information.</p>
+
+
 <img src="images/MainScreen.PNG" />
+<img src= "images/CreateScreen.PNG" />
+<img img src= "images/FillScreen.PNG">

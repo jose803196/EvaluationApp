@@ -13,9 +13,9 @@ from sqlite3 import OperationalError
 
 
 class CrearScreen(Screen):
-    def create_table(self,nombreinput):
+    def create_table(self):
         try:
-            conn = sqlite3.connect(self.ids.nombreinput.text+'.db')
+            conn = sqlite3.connect('Base.db')
             cursor = conn.cursor()
             cursor.execute("""CREATE TABLE Programacion 
                         (ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT NOT NULL, Apellido TEXT NOT NULL, Cedula INTEGER NOT NULL, Correo TEXT NOT NULL)""")
@@ -31,7 +31,7 @@ class FillScreen(Screen):
         cedula = int(self.ids['cedula'].text)
         nail = self.ids['email'].text
 
-        conn = sqlite3.connect('Base2.db')
+        conn = sqlite3.connect('Base.db')
         cursor = conn.cursor()
         cursor.execute("INSERT INTO Programacion (Name, Apellido, Cedula, Correo) VALUES (?,?,?,?)",(fname,lname,cedula,nail))
         conn.commit()
