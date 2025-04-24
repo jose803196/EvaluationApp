@@ -1,122 +1,157 @@
 <CrearScreen>:
-    FloatLayout:
-        #TextInput:
-        #    id: nombreinput
-        #    size_hint: (1,0.2)
-        #    pos_hint: {'x':0,'y':0.1}
-        #    multiline: False
-        #    hint_text : "Name of database"
-        #    halign: "center"
-        Button:
-            text: 'Create'
-            size_hint: (1,0.8)
-            pos_hint: {'x': 0,'y': 0.2}
-            background_color: (0,2,0,1)
+    MDFloatLayout:
+        md_bg_color: app.theme_cls.bg_normal
+        
+        MDLabel:
+            text: "Crear Base de Datos"
+            halign: "center"
+            font_style: "H4"
+            pos_hint: {"center_y": 0.85}
+            size_hint_y: None
+            height: self.texture_size[1]
+            
+        MDRectangleFlatButton:
+            text: 'Crear Tabla'
+            size_hint: 0.8, 0.1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             on_release: 
                 root.create_table()
-                root.manager.current = 'fill'
-                root.manager.transition.direction = 'left'
-        Button:
-            text: 'Back'
-            bold: True
-            size_hint: (1,0.2)
+                
+        MDFlatButton:
+            text: 'Atrás'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
             on_release:
                 root.manager.current = 'start'
                 root.manager.transition.direction = 'right'
 
-<FillScreen>
-    BoxLayout:
+<FillScreen>:
+    MDBoxLayout:
         orientation: "vertical"
-        Label:
-            text: "First Name"
-        TextInput:
-            multiline: False
+        padding: "20dp"
+        spacing: "15dp"
+        
+        MDLabel:
+            text: "Agregar Estudiante"
+            halign: "center"
+            font_style: "H4"
+            size_hint_y: None
+            height: self.texture_size[1]
+            
+        MDTextField:
             id: firstname
-            hint_text : "First name of student"
-            halign: "center"
-        Label:
-            text: "Last Name"
-        TextInput:
-            multiline: False
+            hint_text: "Nombre del estudiante"
+            mode: "rectangle"
+            required: True
+            
+        MDTextField:
             id: lastname
-            hint_text : "Last name of student"
-            halign: "center"
-        Label:
-            text: "ID Number"
-        TextInput:
-            multiline: False
+            hint_text: "Apellido del estudiante"
+            mode: "rectangle"
+            required: True
+            
+        MDTextField:
             id: cedula
-            hint_text : "ID of student"
-            halign: "center"
-        Label:
-            text: "E-mail"
-        TextInput:
-            multiline: False
+            hint_text: "Cédula del estudiante"
+            mode: "rectangle"
+            required: True
+            input_filter: "int"
+            
+        MDTextField:
             id: email
-            hint_text : "E-mail of student"
-            halign: "center"
-        BoxLayout:
-            Button:
-                text:"Back"
-                bold: True
-                size_hint_x: 0.4 
+            hint_text: "Email del estudiante"
+            mode: "rectangle"
+            required: True
+            
+        MDBoxLayout:
+            size_hint_y: None
+            height: "48dp"
+            spacing: "10dp"
+            
+            MDFlatButton:
+                text: "Atrás"
                 on_release:
                     root.manager.current = 'start'
                     root.manager.transition.direction = 'right'
-            Button:
-                text: 'Add student'
-                background_color: (0,1,0,1)
+                    
+            MDRaisedButton:
+                text: "Agregar Estudiante"
                 on_release:
                     root.fill()
 
-
 <VerScreen>:
-    FloatLayout:
-        orientation: "vertical"
-        Button:
-            text: 'Read'
-            size_hint: (0.8,0.1)
-            pos_hint: {'y':0,'x':0.2}
-        Button:
-            text: "Back"
-            bold: True
-            size_hint: (0.2,0.1)
+    MDFloatLayout:
+        md_bg_color: app.theme_cls.bg_normal
+        
+        MDLabel:
+            text: "Ver Estudiantes"
+            halign: "center"
+            font_style: "H4"
+            pos_hint: {"center_y": 0.9}
+            
+        MDRaisedButton:
+            text: 'Leer Datos'
+            size_hint: 0.8, 0.1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            
+        MDFlatButton:
+            text: "Atrás"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
             on_release:
                 root.manager.current = 'start'
                 root.manager.transition.direction = 'right'
 
 <EditarScreen>:
-    FloatLayout:
-        Button:
-            text: 'Edit'
-            size_hint: (0.8,0.1)
-            pos_hint: {'y':0,'x':0.2}
-        Button:
-            text: "Back"
-            bold: True
-            size_hint: (0.2,0.1)
+    MDFloatLayout:
+        md_bg_color: app.theme_cls.bg_normal
+        
+        MDLabel:
+            text: "Editar Estudiantes"
+            halign: "center"
+            font_style: "H4"
+            pos_hint: {"center_y": 0.9}
+            
+        MDRaisedButton:
+            text: 'Editar Datos'
+            size_hint: 0.8, 0.1
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            
+        MDFlatButton:
+            text: "Atrás"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
             on_release:
                 root.manager.current = 'start'
                 root.manager.transition.direction = 'right'
 
 <PrinScreen>:
-    BoxLayout:
+    MDBoxLayout:
         orientation: 'vertical'
-        Button:
-            text: "Prueba"
+        padding: "20dp"
+        spacing: "15dp"
+        
+        MDLabel:
+            text: "Menú Principal"
+            halign: "center"
+            font_style: "H3"
+            size_hint_y: None
+            height: self.texture_size[1]
+            
+        MDRaisedButton:
+            text: "Crear Base de Datos"
             on_release:
                 root.manager.current = 'crear'
                 root.manager.transition.direction = 'left'
-            background_color: (0,2,0,1)
-        Button:
-            text: "Read grade"
+            md_bg_color: app.theme_cls.primary_color
+                
+        MDRaisedButton:
+            text: "Ver Estudiantes"
             on_release:
                 root.manager.current = 'ver'
                 root.manager.transition.direction = 'left'
-            background_color: (0,0,1,1)
-        Button:
-            text: "Update grade"
+            md_bg_color: app.theme_cls.primary_light
+                
+        MDRaisedButton:
+            text: "Editar Estudiantes"
             on_release:    
                 root.manager.current = 'editar'
                 root.manager.transition.direction = 'left'
-            background_color: (1,0,0,1)
+            md_bg_color: app.theme_cls.accent_color
