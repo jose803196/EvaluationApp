@@ -78,27 +78,21 @@
                 on_release:
                     root.fill()
 
-<VerScreen>:
-    MDFloatLayout:
-        md_bg_color: app.theme_cls.bg_normal
+<VerScreen>:  
+    MDBoxLayout:  
+        orientation: "vertical"  
         
-        MDLabel:
-            text: "Ver Estudiantes"
-            halign: "center"
-            font_style: "H4"
-            pos_hint: {"center_y": 0.9}
+        MDTopAppBar:
+            title: "Lista de Estudiantes"
+            left_action_items: [["arrow-left", lambda x: app.ir_a_start()]]
+            right_action_items: [["refresh", lambda x: root.cargar_estudiantes()]]
+            elevation: 2  
             
-        MDRaisedButton:
-            text: 'Leer Datos'
-            size_hint: 0.8, 0.1
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            
-        MDFlatButton:
-            text: "Atrás"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-            on_release:
-                root.manager.current = 'start'
-                root.manager.transition.direction = 'right'
+        ScrollView:  
+            MDList:  
+                id: lista_estudiantes  
+                spacing: "10dp"  
+                padding: "20dp"
 
 <EditarScreen>:
     MDFloatLayout:
@@ -143,14 +137,14 @@
             md_bg_color: app.theme_cls.primary_color
                 
         MDRaisedButton:
-            text: "Ver Estudiantes"
+            text: "Ver Estudiantes/Notas"
             on_release:
                 root.manager.current = 'ver'
                 root.manager.transition.direction = 'left'
             md_bg_color: app.theme_cls.primary_light
                 
         MDRaisedButton:
-            text: "Editar Estudiantes"
+            text: "Editar Estudiantes/notas"
             on_release:    
                 root.manager.current = 'editar'
                 root.manager.transition.direction = 'left'
