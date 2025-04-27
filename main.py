@@ -9,6 +9,10 @@ from kivymd.uix.button import MDFlatButton
 from functools import partial
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
+from kivymd.uix.scrollview import ScrollView
+from kivymd.uix.label import MDLabel
+from kivymd.uix.textfield import MDTextField
+from kivymd.uix.button import MDRaisedButton
 
 class CrearScreen(Screen):  
     def create_table(self):  
@@ -169,7 +173,8 @@ class EditarScreen(Screen):
             cursor.execute("SELECT ID, Nombre, Apellido, Cedula FROM Estudiantes")
             for estudiante in cursor.fetchall():
                 item = OneLineListItem(
-                    text=f"{estudiante[1]} {estudiante[2]} - Cédula: {estudiante[3]}"
+                    text=f"{estudiante[1]} {estudiante[2]} - Cédula: {estudiante[3]}",
+                    height=50
                 )
                 item.bind(on_release=lambda x, est_id=estudiante[0]: self.mostrar_notas(est_id))
                 self.ids.lista_estudiantes.add_widget(item)
@@ -196,42 +201,93 @@ class EditarScreen(Screen):
             total = sum(nota[1] for nota in notas)
             promedio = total / len(notas) if notas else 0
             
-            # Crear contenido
-            content = BoxLayout(orientation='horizontal', spacing=10, size_hint_y=None)
-            content.add_widget(TextInput(
+            # Crear contenido principal con ScrollView
+            main_content = BoxLayout(orientation='vertical', spacing=10, size_hint_y=None)
+            main_content.bind(minimum_height=main_content.setter('height'))
+            
+            # Información del estudiante
+            estudiante_box = BoxLayout(size_hint_y=None, height=60)
+            estudiante_box.add_widget(TextInput(
                 text=f"Estudiante: {nombre} {apellido}",
                 readonly=True,
-                font_size='18sp'
+                font_size='18sp',
+                size_hint_x=0.8
             ))
+            main_content.add_widget(estudiante_box)
             
-            # Lista de notas
+            # Encabezado de notas
+            encabezado = BoxLayout(size_hint_y=None, height=40)
+            encabezado.add_widget(TextInput(
+                text="Práctica",
+                readonly=True,
+                background_color=(0.7, 0.7, 0.7, 1),
+                size_hint_x=0.6
+            ))
+            encabezado.add_widget(TextInput(
+                text="Nota",
+                readonly=True,
+                background_color=(0.7, 0.7, 0.7, 1),
+                size_hint_x=0.4
+            ))
+            main_content.add_widget(encabezado)
+            
+            # Lista de notas con ScrollView
+            notas_scroll = ScrollView(size_hint=(1, None), size_hint_y=None, height=min(400, len(notas)*50))
+            notas_container = BoxLayout(orientation='vertical', size_hint_y=None)
+            notas_container.bind(minimum_height=notas_container.setter('height'))
+            
             for practica, nota in notas:
-                box = BoxLayout(size_hint_y=None, height=40)
-                box.add_widget(TextInput(text=practica, readonly=True))
-                box.add_widget(TextInput(text=str(nota), readonly=True))
-                content.add_widget(box)
+                nota_box = BoxLayout(size_hint_y=None, height=40)
+                nota_box.add_widget(TextInput(
+                    text=practica,
+                    readonly=True,
+                    size_hint_x=0.6
+                ))
+                nota_box.add_widget(TextInput(
+                    text=str(nota),
+                    readonly=True,
+                    size_hint_x=0.4
+                ))
+                notas_container.add_widget(nota_box)
             
-            # Acumulados
-            content.add_widget(TextInput(
-                text=f"Nota Acumulada: {total}",
+            notas_scroll.add_widget(notas_container)
+            main_content.add_widget(notas_scroll)
+            
+            # Totales
+            totales_box = BoxLayout(size_hint_y=None, height=60)
+            totales_box.add_widget(TextInput(
+                text=f"Nota Acumulada: {total:.2f}",
                 readonly=True,
-                background_color=(0.2, 0.7, 0.3, 1)
+                background_color=(0.2, 0.7, 0.3, 1),
+                size_hint_x=0.5
             ))
-            content.add_widget(TextInput(
-                text=f"Promedio Actual: {promedio:.4f}",
+            totales_box.add_widget(TextInput(
+                text=f"Promedio: {promedio:.2f}",
                 readonly=True,
-                background_color=(0.2, 0.5, 0.8, 1)
+                background_color=(0.2, 0.5, 0.8, 1),
+                size_hint_x=0.5
             ))
+            main_content.add_widget(totales_box)
             
             self.dialog = MDDialog(
-                title="Gestión de Notas",
+                title=f"Notas de {nombre} {apellido}",
                 type="custom",
-                content_cls=content,
+                content_cls=main_content,
                 buttons=[
-                    MDFlatButton(text="Agregar Práctica", on_release=lambda x: self.agregar_nota()),
-                    MDFlatButton(text="Cerrar", on_release=lambda x: self.dialog.dismiss())
+                    MDFlatButton(
+                        text="Agregar Práctica",
+                        on_release=lambda x: self.agregar_nota(),
+                        size_hint=(0.4, None),
+                        height=40
+                    ),
+                    MDFlatButton(
+                        text="Cerrar",
+                        on_release=lambda x: self.dialog.dismiss(),
+                        size_hint=(0.4, None),
+                        height=40
+                    )
                 ],
-                size_hint=(0.9, None)
+                size_hint=(0.9, 0.9)
             )
             self.dialog.open()
             
@@ -242,31 +298,74 @@ class EditarScreen(Screen):
 
     def agregar_nota(self):
         self.dialog.dismiss()
-        content = BoxLayout(orientation='horizontal', spacing=15, size_hint_y=None)
-        self.nueva_practica = TextInput(hint_text='Nombre de la práctica')
-        self.nueva_nota = TextInput(hint_text='Nota (0-20)', input_filter='float')
+        content = BoxLayout(orientation='vertical', spacing=15, size_hint_y=None, height=200)
         
-        content.add_widget(self.nueva_practica)
-        content.add_widget(self.nueva_nota)
+        # Campo para el nombre de la práctica
+        practica_box = BoxLayout(size_hint_y=None, height=60)
+        practica_box.add_widget(MDLabel(
+            text="Nombre de la práctica:",
+            size_hint_x=0.4,
+            halign="right"
+        ))
+        self.nueva_practica = MDTextField(
+            hint_text='Ej: Práctica 1',
+            size_hint_x=0.6
+        )
+        practica_box.add_widget(self.nueva_practica)
+        content.add_widget(practica_box)
+        
+        # Campo para la nota
+        nota_box = BoxLayout(size_hint_y=None, height=60)
+        nota_box.add_widget(MDLabel(
+            text="Nota (0-20):",
+            size_hint_x=0.4,
+            halign="right"
+        ))
+        self.nueva_nota = MDTextField(
+            hint_text='0.00 - 20.00',
+            input_filter='float',
+            size_hint_x=0.6
+        )
+        nota_box.add_widget(self.nueva_nota)
+        content.add_widget(nota_box)
         
         self.dialog = MDDialog(
-            title="Nueva Calificación",
+            title="Agregar Nueva Calificación",
             type="custom",
             content_cls=content,
             buttons=[
-                MDFlatButton(text="Cancelar", on_release=lambda x: self.dialog.dismiss()),
-                MDFlatButton(text="Guardar", on_release=self.guardar_nota)
-            ]
+                MDFlatButton(
+                    text="Cancelar",
+                    on_release=lambda x: self.dialog.dismiss(),
+                    size_hint=(0.4, None),
+                    height=40
+                ),
+                MDRaisedButton(
+                    text="Guardar",
+                    on_release=self.guardar_nota,
+                    size_hint=(0.4, None),
+                    height=40
+                )
+            ],
+            size_hint=(0.8, None)
         )
         self.dialog.open()
 
     def guardar_nota(self, *args):
         try:
             practica = self.nueva_practica.text.strip()
-            nota = float(self.nueva_nota.text)
+            nota_text = self.nueva_nota.text.strip()
             
-            if not practica or not (0 <= nota <= 20):
-                raise ValueError("Datos inválidos")
+            if not practica:
+                raise ValueError("Debe ingresar un nombre para la práctica")
+                
+            if not nota_text:
+                raise ValueError("Debe ingresar una nota")
+                
+            nota = float(nota_text)
+            
+            if not (0 <= nota <= 20):
+                raise ValueError("La nota debe estar entre 0 y 20")
             
             conn = sqlite3.connect('Base.db')
             cursor = conn.cursor()
@@ -278,8 +377,10 @@ class EditarScreen(Screen):
             self.dialog.dismiss()
             self.mostrar_notas(self.estudiante_actual)
             
-        except Exception as e:
+        except ValueError as e:
             self.dialog.title = f"Error: {str(e)}"
+        except Exception as e:
+            self.dialog.title = f"Error inesperado: {str(e)}"
         finally:
             if 'conn' in locals():
                 conn.close()
