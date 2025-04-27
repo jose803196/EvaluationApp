@@ -6,7 +6,9 @@ from sqlite3 import OperationalError
 from kivymd.uix.list import OneLineListItem, TwoLineListItem
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
-from functools import partial 
+from functools import partial
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.textinput import TextInput
 
 class CrearScreen(Screen):  
     def create_table(self):  
@@ -154,7 +156,133 @@ class VerScreen(Screen):
 
 
 class EditarScreen(Screen):
-    pass
+    estudiante_actual = None
+    
+    def on_pre_enter(self):
+        self.cargar_estudiantes()
+
+    def cargar_estudiantes(self):
+        self.ids.lista_estudiantes.clear_widgets()
+        try:
+            conn = sqlite3.connect('Base.db')
+            cursor = conn.cursor()
+            cursor.execute("SELECT ID, Nombre, Apellido, Cedula FROM Estudiantes")
+            for estudiante in cursor.fetchall():
+                item = OneLineListItem(
+                    text=f"{estudiante[1]} {estudiante[2]} - Cédula: {estudiante[3]}"
+                )
+                item.bind(on_release=lambda x, est_id=estudiante[0]: self.mostrar_notas(est_id))
+                self.ids.lista_estudiantes.add_widget(item)
+        except Exception as e:
+            print(f"Error cargando estudiantes: {e}")
+        finally:
+            conn.close()
+
+    def mostrar_notas(self, estudiante_id):
+        self.estudiante_actual = estudiante_id
+        try:
+            conn = sqlite3.connect('Base.db')
+            cursor = conn.cursor()
+            
+            # Obtener datos del estudiante
+            cursor.execute("SELECT Nombre, Apellido FROM Estudiantes WHERE ID=?", (estudiante_id,))
+            nombre, apellido = cursor.fetchone()
+            
+            # Obtener notas
+            cursor.execute("SELECT Practica, Nota FROM Notas WHERE EstudianteID=?", (estudiante_id,))
+            notas = cursor.fetchall()
+            
+            # Calcular acumulados
+            total = sum(nota[1] for nota in notas)
+            promedio = total / len(notas) if notas else 0
+            
+            # Crear contenido
+            content = BoxLayout(orientation='horizontal', spacing=10, size_hint_y=None)
+            content.add_widget(TextInput(
+                text=f"Estudiante: {nombre} {apellido}",
+                readonly=True,
+                font_size='18sp'
+            ))
+            
+            # Lista de notas
+            for practica, nota in notas:
+                box = BoxLayout(size_hint_y=None, height=40)
+                box.add_widget(TextInput(text=practica, readonly=True))
+                box.add_widget(TextInput(text=str(nota), readonly=True))
+                content.add_widget(box)
+            
+            # Acumulados
+            content.add_widget(TextInput(
+                text=f"Nota Acumulada: {total}",
+                readonly=True,
+                background_color=(0.2, 0.7, 0.3, 1)
+            ))
+            content.add_widget(TextInput(
+                text=f"Promedio Actual: {promedio:.4f}",
+                readonly=True,
+                background_color=(0.2, 0.5, 0.8, 1)
+            ))
+            
+            self.dialog = MDDialog(
+                title="Gestión de Notas",
+                type="custom",
+                content_cls=content,
+                buttons=[
+                    MDFlatButton(text="Agregar Práctica", on_release=lambda x: self.agregar_nota()),
+                    MDFlatButton(text="Cerrar", on_release=lambda x: self.dialog.dismiss())
+                ],
+                size_hint=(0.9, None)
+            )
+            self.dialog.open()
+            
+        except Exception as e:
+            print(f"Error: {e}")
+        finally:
+            conn.close()
+
+    def agregar_nota(self):
+        self.dialog.dismiss()
+        content = BoxLayout(orientation='horizontal', spacing=15, size_hint_y=None)
+        self.nueva_practica = TextInput(hint_text='Nombre de la práctica')
+        self.nueva_nota = TextInput(hint_text='Nota (0-20)', input_filter='float')
+        
+        content.add_widget(self.nueva_practica)
+        content.add_widget(self.nueva_nota)
+        
+        self.dialog = MDDialog(
+            title="Nueva Calificación",
+            type="custom",
+            content_cls=content,
+            buttons=[
+                MDFlatButton(text="Cancelar", on_release=lambda x: self.dialog.dismiss()),
+                MDFlatButton(text="Guardar", on_release=self.guardar_nota)
+            ]
+        )
+        self.dialog.open()
+
+    def guardar_nota(self, *args):
+        try:
+            practica = self.nueva_practica.text.strip()
+            nota = float(self.nueva_nota.text)
+            
+            if not practica or not (0 <= nota <= 20):
+                raise ValueError("Datos inválidos")
+            
+            conn = sqlite3.connect('Base.db')
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO Notas (EstudianteID, Practica, Nota) VALUES (?, ?, ?)",
+                (self.estudiante_actual, practica, nota)
+            )
+            conn.commit()
+            self.dialog.dismiss()
+            self.mostrar_notas(self.estudiante_actual)
+            
+        except Exception as e:
+            self.dialog.title = f"Error: {str(e)}"
+        finally:
+            if 'conn' in locals():
+                conn.close()
 
 
 class PrinScreen(Screen):
@@ -162,7 +290,7 @@ class PrinScreen(Screen):
 
 
 class MyApp(MDApp):
-    def ir_a_start(self):
+    def ir_a_start(self,*args):
         self.root.current = 'start'
         self.root.transition.direction = 'right'
 

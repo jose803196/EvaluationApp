@@ -95,26 +95,20 @@
                 padding: "20dp"
 
 <EditarScreen>:
-    MDFloatLayout:
-        md_bg_color: app.theme_cls.bg_normal
+    MDBoxLayout:
+        orientation: "vertical"
         
-        MDLabel:
-            text: "Editar Estudiantes"
-            halign: "center"
-            font_style: "H4"
-            pos_hint: {"center_y": 0.9}
+        MDTopAppBar:
+            title: "Editar Notas"
+            left_action_items: [["arrow-left", lambda x: app.ir_a_start()]]
+            elevation: 10
             
-        MDRaisedButton:
-            text: 'Editar Datos'
-            size_hint: 0.8, 0.1
-            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
-            
-        MDFlatButton:
-            text: "Atrás"
-            pos_hint: {'center_x': 0.5, 'center_y': 0.1}
-            on_release:
-                root.manager.current = 'start'
-                root.manager.transition.direction = 'right'
+        ScrollView:
+            MDList:
+                id: lista_estudiantes
+                spacing: "10dp"
+                padding: "20dp"
+
 
 <PrinScreen>:
     MDBoxLayout:
