@@ -5,14 +5,14 @@ import sqlite3
 from sqlite3 import OperationalError
 from kivymd.uix.list import OneLineListItem, TwoLineListItem
 from kivymd.uix.dialog import MDDialog
-from kivymd.uix.button import MDFlatButton
+from kivymd.uix.button import MDFlatButton, MDRaisedButton
 from functools import partial
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivymd.uix.scrollview import ScrollView
 from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
-from kivymd.uix.button import MDRaisedButton
+from kivy.core.window import Window
 
 class CrearScreen(Screen):  
     def create_table(self):  
@@ -398,7 +398,7 @@ class MyApp(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Light"
         self.theme_cls.primary_palette = "Cyan"
-        self.title = 'Eva App'
+        self.title = 'Aplicacion de Evaluación'
         
         sm = ScreenManager()
         sm.add_widget(PrinScreen(name='start'))

@@ -117,28 +117,33 @@
         spacing: "15dp"
         
         MDLabel:
-            text: "Menú Principal"
+            text: "Aplicación \n de \n Evaluacion"
             halign: "center"
             font_style: "H3"
             size_hint_y: None
             height: self.texture_size[1]
+            padding_y: "20dp"
+            bold: True
+            italic: True
             
         MDRaisedButton:
-            text: "Crear Base de Datos"
+            text: "Crear Base o Añadir Estudiantes"
             on_release:
                 root.manager.current = 'crear'
                 root.manager.transition.direction = 'left'
             md_bg_color: app.theme_cls.primary_color
+            size_hint_y: None
+            height: "48dp"
                 
         MDRaisedButton:
-            text: "Ver Estudiantes/Notas"
+            text: "Ver Estudiantes"
             on_release:
                 root.manager.current = 'ver'
                 root.manager.transition.direction = 'left'
             md_bg_color: app.theme_cls.primary_light
                 
         MDRaisedButton:
-            text: "Editar Estudiantes/notas"
+            text: "Editar Notas"
             on_release:    
                 root.manager.current = 'editar'
                 root.manager.transition.direction = 'left'
