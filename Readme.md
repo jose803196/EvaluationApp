@@ -4,114 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="EVAP - Sistema de Evaluación Estudiantil para la gestión y evaluación eficiente de estudiantes con Python y KivyMD.">
-    <title>EVAP - Sistema de Evaluación Estudiantil</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <style>
-        body{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        header{
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #00bcd4,rgba(24, 186, 215, 0.89));
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(179, 0, 255, 0.2);
-        }
-        h1{
-            margin: 0;
-            font-size: 2.5em;
-            font-weight: 300;
-        }
-        h2{
-            color: #008ba3;
-            border-bottom: 2px solid #00bcd4;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-        .badge{
-            display: inline-block;
-            padding: 3px 8px;
-            background-color: #00bcd4;
-            color: white;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-right: 5px;
-        }
-        .tech-item {
-            display: inline-block;
-            margin-right: 15px;
-            margin-bottom: 10px;
-        }
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 20px 0;
-        }
-        .feature-card {
-            flex: 1 1 250px;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 4px solid #00bcd4;
-        }
-        .screenshots {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin: 25px 0;
-        }
-        .screenshot {
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .screenshot:hover {
-            transform: translateY(-5px);
-        }
-        .screenshot img {
-            max-width: 200px;
-            display: block;
-        }
-        .screenshot-caption {
-            text-align: center;
-            padding: 8px;
-            background: #f5f5f5;
-            font-size: 0.9em;
-        }
-        code {
-            background-color: #f0f0f0;
-            padding: 2px 4px;
-            border-radius: 3px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.9em;
-        }
-        pre code {
-            display: block;
-            padding: 10px;
-            background: #f0f0f0;
-            border-radius: 5px;
-        }
-        .tech-stack {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-    </style>
 </head>
 
 <body>
@@ -120,10 +12,10 @@
         <p>Sistema de Evaluación Estudiantil</p>
     </header>
     <main>
-        <img src="https://img.shields.io/badge/Python-3.12+-blue?logo=python&logoColor=green" alt="Python version">
-        <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
-        <img src="https://img.shield.io/kivy/kivy/master/kivy/data/logo/kivy-icon-256.png">
-        <span style="display: flex; align-items: center;">
+        <span style="display: flex; align-items: center;gap:15px">
+            <img src="https://img.shields.io/badge/Python-3.12+-blue?logo=python&logoColor=green" alt="Python version">
+            <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
+            <img src="https://img.shield.io/kivy/kivy/master/kivy/data/logo/kivy-icon-256.png">
             <img src="https://kivymd.readthedocs.io/en/latest/_static/logo-kivymd.png" alt="Logo" style="margin-left: 8px; width:25px; margin-right:8px;"/> 
             <img src="https://img.shields.io/badge/KivyMD-1.1.1-blue" alt="KivyMD Badge"/>  
         </span>
