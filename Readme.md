@@ -4,6 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="EVAP - Sistema de Evaluación Estudiantil para la gestión y evaluación eficiente de estudiantes con Python y KivyMD.">
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            line-height: 1.6;  
+            background-color: #f9f9f9;  
+            margin: 0;  
+            padding: 20px;  
+        }  
+        
+        header {  
+            text-align: center;  
+            background: #4CAF50;  
+            color: white;  
+            padding: 10px 0;  
+            border-radius: 5px;  
+        }  
+
+        h1 {  
+            margin: 0;  
+            font-size: 2.5em;  
+        }  
+
+        h2 {  
+            color: #333;  
+            border-bottom: 2px solid #4CAF50;  
+            padding-bottom: 5px;  
+        }  
+
+        main {  
+            margin: 20px auto;  
+            max-width: 800px;  
+            background: white;  
+            padding: 20px;  
+            border-radius: 5px;  
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+        }  
+
+        ul {  
+            list-style-type: none;  
+            padding: 0;  
+        }  
+
+        li {  
+            background: #f2f2f2;  
+            margin: 5px 0;  
+            padding: 10px;  
+            border-radius: 5px;  
+        }  
+
+        .features {  
+            display: flex;  
+            flex-wrap: wrap;  
+            gap: 20px;  
+        }  
+
+        .feature-card {  
+            flex: 1 1 calc(50% - 20px);  
+            min-width: 300px;  
+            background: #e9ffe9;  
+            padding: 15px;  
+            border-radius: 5px;  
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+        }  
+
+        .screenshots {  
+            display: flex;  
+            flex-wrap: wrap;  
+            gap: 15px;  
+        }  
+
+        .screenshot {  
+            flex: 1 1 calc(33% - 15px);  
+            min-width: 200px;  
+        }  
+
+        .screenshot img {  
+            width: 100%;  
+            border-radius: 5px;  
+        }  
+
+        .screenshot-caption {  
+            text-align: center;  
+            font-weight: bold;  
+            margin-top: 5px;  
+        }  
+
+        .tech-stack {  
+            display: flex;  
+            flex-direction: column;  
+            margin-top: 10px;  
+        }  
+
+        .tech-item {  
+            padding: 10px;  
+            background-color: #e7f3fe; /* Color claro para los badges */  
+            border-left: 5px solid #2196F3; /* Línea a la izquierda */  
+            margin: 5px 0;  
+            border-radius: 5px;  
+        }  
+
+        /* Responsividad */  
+        @media (max-width: 600px) {  
+            .feature-card {  
+                flex: 1 1 100%;  
+            }  
+
+            .screenshot {  
+                flex: 1 1 100%;  
+            }  
+        }  
+    </style>
 </head>
 
 <body>
