@@ -120,6 +120,13 @@
         <p>Sistema de Evaluación Estudiantil</p>
     </header>
     <main>
+        <img src="https://img.shields.io/badge/Python-3.12+-blue?logo=python&logoColor=green" alt="Python version">
+        <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
+        <img src="https://img.shield.io/kivy/kivy/master/kivy/data/logo/kivy-icon-256.png">
+        <span style="display: flex; align-items: center;">
+            <img src="https://kivymd.readthedocs.io/en/latest/_static/logo-kivymd.png" alt="Logo" style="margin-left: 8px; width:25px; margin-right:8px;"/> 
+            <img src="https://img.shields.io/badge/KivyMD-1.1.1-blue" alt="KivyMD Badge"/>  
+        </span>
         <section aria-labelledby="descripcion">
             <h2 id="descripcion">Descripción</h2>
             <p>EVAP es una aplicación profesional diseñada para facilitar la gestión y evaluación de estudiantes. Desarrollada con Python y KivyMD, ofrece una interfaz moderna e intuitiva para administrar información académica de manera eficiente.</p>
