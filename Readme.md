@@ -17,7 +17,7 @@
             <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License MIT">
             <img src="https://img.shield.io/kivy/kivy/master/kivy/data/logo/kivy-icon-256.png">
             <img src="https://kivymd.readthedocs.io/en/latest/_static/logo-kivymd.png" alt="Logo" style="margin-left: 8px; width:25px; margin-right:8px;"/> 
-            <img src="https://img.shields.io/badge/KivyMD-1.1.1-blue" alt="KivyMD Badge"/>  
+            <img src="https://img.shields.io/badge/KivyMD-1.2.0-blue" alt="KivyMD Badge"/>  
         </span>
         <section aria-labelledby="descripcion">
             <h2 id="descripcion">Descripción</h2>
