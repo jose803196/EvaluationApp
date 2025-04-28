@@ -1,259 +1,231 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EVAP - Sistema de Evaluación Estudiantil para la gestión y evaluación eficiente de estudiantes con Python y KivyMD.">
     <title>EVAP - Sistema de Evaluación Estudiantil</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
-        body {
+        body{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
             max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            background-color: #f9f9f9;
         }
-        h1, h2, h3 {
-            color: #2c3e50;
+        header{
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #00bcd4,rgba(24, 186, 215, 0.89));
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(179, 0, 255, 0.2);
         }
-        h1 {
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        h1{
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
         }
-        h2 {
-            border-bottom: 1px solid #eee;
+        h2{
+            color: #008ba3;
+            border-bottom: 2px solid #00bcd4;
             padding-bottom: 5px;
             margin-top: 30px;
         }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .badge{
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #00bcd4;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-right: 5px;
         }
-        .screenshots {
+        .tech-item {
+            display: inline-block;
+            margin-right: 15px;
+            margin-bottom: 10px;
+        }
+        .features {
             display: flex;
-            justify-content: space-between;
             flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        .screenshot {
-            flex: 0 0 32%;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-        .screenshot img {
-            max-height: 300px;
-        }
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
             margin: 20px 0;
         }
         .feature-card {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 5px;
-            border-left: 4px solid #3498db;
+            flex: 1 1 250px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-left: 4px solid #00bcd4;
         }
-        code {
-            background: #f4f4f4;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        .tech-badges {
+        .screenshots {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
+            gap: 15px;
+            justify-content: center;
+            margin: 25px 0;
         }
-        .badge {
-            background: #3498db;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
+        .screenshot {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .screenshot:hover {
+            transform: translateY(-5px);
+        }
+        .screenshot img {
+            max-width: 200px;
+            display: block;
+        }
+        .screenshot-caption {
+            text-align: center;
+            padding: 8px;
+            background: #f5f5f5;
             font-size: 0.9em;
         }
-        .file-structure {
-            background: #f4f4f4;
-            padding: 15px;
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+        pre code {
+            display: block;
+            padding: 10px;
+            background: #f0f0f0;
             border-radius: 5px;
-            font-family: monospace;
-            line-height: 1.8;
+        }
+        .tech-stack {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
     </style>
 </head>
+
 <body>
-    <h1>EVAP - Sistema de Evaluación Estudiantil</h1>
-    
-    <p><img src="images/MainScreen.PNG" alt="EVAP Logo" width="200"></p>
-    
-    <p>EVAP es una aplicación profesional diseñada para gestionar la evaluación de estudiantes de manera eficiente y organizada. Desarrollada con Python y KivyMD, ofrece una interfaz intuitiva para administrar bases de datos estudiantiles, registrar calificaciones y visualizar información académica.</p>
-    
-    <h2>Características Principales</h2>
-    
-    <div class="feature-list">
-        <div class="feature-card">
-            <h3>🗃️ Gestión de bases de datos</h3>
-            <p>Completo sistema para administrar información estudiantil con validación de datos y prevención de duplicados.</p>
-        </div>
-        
-        <div class="feature-card">
-            <h3>📝 Registro detallado</h3>
-            <p>Formularios intuitivos para capturar información personal y académica de los estudiantes.</p>
-        </div>
-        
-        <div class="feature-card">
-            <h3>📊 Sistema de calificaciones</h3>
-            <p>Registro flexible por prácticas/actividades con cálculo automático de promedios y acumulados.</p>
-        </div>
-        
-        <div class="feature-card">
-            <h3>📧 Integración con correo</h3>
-            <p>Vinculación con correos electrónicos estudiantiles para futuras funcionalidades de comunicación.</p>
-        </div>
-        
-        <div class="feature-card">
-            <h3>📱 Interfaz moderna</h3>
-            <p>Diseño responsive y atractivo desarrollado con KivyMD para una experiencia de usuario óptima.</p>
-        </div>
-    </div>
-    
-    <h2>Capturas de Pantalla</h2>
-    
-    <div class="screenshots">
-        <div class="screenshot">
-            <img src="images/MainScreen.PNG" alt="Main Screen">
-            <p>Vista Principal</p>
-        </div>
-        <div class="screenshot">
-            <img src="images/CreateScreen.PNG" alt="Create Screen">
-            <p>Crear Base de Datos</p>
-        </div>
-        <div class="screenshot">
-            <img src="images/FillScreen.PNG" alt="Fill Screen">
-            <p>Formulario de Estudiante</p>
-        </div>
-    </div>
-    
-    <h2>Instalación y Uso</h2>
-    
-    <h3>1. Requisitos del sistema:</h3>
-    <ul>
-        <li>Python 3.7 o superior</li>
-        <li>Pip (gestor de paquetes de Python)</li>
-    </ul>
-    
-    <h3>2. Instalación de dependencias:</h3>
-    <pre><code>pip install kivy kivymd sqlite3</code></pre>
-    
-    <h3>3. Ejecución de la aplicación:</h3>
-    <pre><code>python main.py</code></pre>
-    
-    <h2>Funcionalidades Detalladas</h2>
-    
-    <h3>1. Gestión de Base de Datos</h3>
-    <ul>
-        <li>Creación automática de tablas relacionales (Estudiantes y Notas)</li>
-        <li>Validación de campos obligatorios</li>
-        <li>Prevención de duplicados por cédula de identidad</li>
-        <li>Almacenamiento seguro en SQLite</li>
-    </ul>
-    
-    <h3>2. Registro de Estudiantes</h3>
-    <ul>
-        <li>Formulario intuitivo con validaciones</li>
-        <li>Almacenamiento de información completa:
-            <ul>
-                <li>Nombres y apellidos</li>
-                <li>Cédula de identidad</li>
-                <li>Correo electrónico</li>
+    <header role="banner" aria-label="Encabezado de EVAP">
+        <h1>EVAP</h1>
+        <p>Sistema de Evaluación Estudiantil</p>
+    </header>
+    <main>
+        <section aria-labelledby="descripcion">
+            <h2 id="descripcion">Descripción</h2>
+            <p>EVAP es una aplicación profesional diseñada para facilitar la gestión y evaluación de estudiantes. Desarrollada con Python y KivyMD, ofrece una interfaz moderna e intuitiva para administrar información académica de manera eficiente.</p>
+        </section>
+        <section aria-labelledby="caracteristicas" class="features">
+            <h2 id="caracteristicas">Características</h2>
+            <ul role="list" class="features">
+                <li class="feature-card">
+                    <h3>Gestión de Estudiantes</h3>
+                    <p>Registro completo de estudiantes con nombres, apellidos, cédula de identidad y correo electrónico.</p>
+                </li>
+                <li class="feature-card">
+                    <h3>Sistema de Calificaciones</h3>
+                    <p>Asignación y edición de notas por práctica, con cálculo automático de promedio y acumulados.</p>
+                </li>
+                <li class="feature-card">
+                    <h3>Base de Datos Segura</h3>
+                    <p>Almacenamiento local con SQLite, garantizando integridad y disponibilidad de los datos.</p>
+                </li>
+                <li class="feature-card">
+                    <h3>Interfaz Intuitiva</h3>
+                    <p>Diseño responsive y accesible, con transiciones fluidas entre pantallas.</p>
+                </li>
             </ul>
-        </li>
-        <li>Mensajes de confirmación y errores</li>
-    </ul>
-    
-    <h3>3. Sistema de Calificaciones</h3>
-    <ul>
-        <li>Registro detallado por prácticas/actividades</li>
-        <li>Cálculo automático de:
+        </section>
+        <section aria-labelledby="caracteristicas-principales">
+            <h2 id="caracteristicas-principales">Características Principales</h2>
             <ul>
-                <li>Nota acumulada</li>
-                <li>Promedio general</li>
+                <li><strong>Creación de base de datos</strong> con información completa de estudiantes.</li>
+                <li><strong>Visualización detallada</strong> de registros estudiantiles.</li>
+                <li><strong>Edición avanzada</strong> de calificaciones con validación de datos.</li>
+                <li><strong>Sistema de promedios</strong> automático.</li>
+                <li><strong>Validación de campos</strong> para garantizar datos correctos.</li>
+                <li><strong>Mensajes de feedback</strong> para operaciones exitosas o errores.</li>
             </ul>
-        </li>
-        <li>Visualización clara de historial académico</li>
-        <li>Validación de rangos (0-20)</li>
-    </ul>
-    
-    <h3>4. Consulta de Información</h3>
-    <ul>
-        <li>Listado completo de estudiantes</li>
-        <li>Visualización detallada por estudiante</li>
-        <li>Actualización en tiempo real</li>
-    </ul>
-    
-    <h2>Estructura del Código</h2>
-    
-    <p>La aplicación sigue una arquitectura modular basada en pantallas (screens):</p>
-    
-    <div class="file-structure">
-        EVAP/<br>
-        ├── main.py                # Punto de entrada principal<br>
-        ├── screens/<br>
-        │   ├── principal.py       # Pantalla de inicio<br>
-        │   ├── crear.py          # Creación de base de datos<br>
-        │   ├── llenar.py         # Formulario de estudiantes<br>
-        │   ├── ver.py            # Visualización de datos<br>
-        │   └── editar.py         # Gestión de calificaciones<br>
-        └── Base.db               # Base de datos SQLite
-    </div>
-    
-    <h2>Tecnologías Utilizadas</h2>
-    
-    <div class="tech-badges">
-        <span class="badge">Python</span>
-        <span class="badge">KivyMD</span>
-        <span class="badge">SQLite3</span>
-        <span class="badge">MVC</span>
-        <span class="badge">OOP</span>
-    </div>
-    
-    <h2>Contribución</h2>
-    
-    <p>¡Las contribuciones son bienvenidas! Por favor sigue estos pasos:</p>
-    
-    <ol>
-        <li>Haz un fork del proyecto</li>
-        <li>Crea una rama para tu feature (<code>git checkout -b feature/AmazingFeature</code>)</li>
-        <li>Haz commit de tus cambios (<code>git commit -m 'Add some AmazingFeature'</code>)</li>
-        <li>Haz push a la rama (<code>git push origin feature/AmazingFeature</code>)</li>
-        <li>Abre un Pull Request</li>
-    </ol>
-    
-    <h2>Licencia</h2>
-    
-    <p>Distribuido bajo la licencia MIT. Consulta el archivo <code>LICENSE</code> para más información.</p>
-    
-    <h2>Contacto</h2>
-    
-    <p>Para preguntas o sugerencias, por favor contacta al desarrollador:</p>
-    
-    <ul>
-        <li>Email: <a href="mailto:tu-email@example.com">tu-email@example.com</a></li>
-        <li>GitHub: <a href="https://github.com/tu-usuario" target="_blank">@tu-usuario</a></li>
-    </ul>
-    
-    <hr>
-    
-    <p><strong>EVAP</strong> - Simplificando la evaluación académica desde 2023</p>
+        </section>
+        <section aria-labelledby="capturas-pantalla">
+            <h2 id="capturas-pantalla">Capturas de Pantalla</h2>
+            <div class="screenshots" role="list">
+                <div class="screenshot" role="listitem">
+                    <img src="images/MainScreen.PNG" alt="Pantalla Principal de EVAP">
+                    <div class="screenshot-caption">Pantalla Principal</div>
+                </div>
+                <div class="screenshot" role="listitem">
+                    <img src="images/CreateScreen.PNG" alt="Pantalla de Creación de Base de Datos de EVAP">
+                    <div class="screenshot-caption">Creación de Base de Datos</div>
+                </div>
+                <div class="screenshot" role="listitem">
+                    <img src="images/FillScreen.PNG" alt="Pantalla de Registro de Estudiantes de EVAP">
+                    <div class="screenshot-caption">Registro de Estudiantes</div>
+                </div>
+            </div>
+        </section>
+        <section aria-labelledby="tecnologias">
+            <h2 id="tecnologias">Tecnologías Utilizadas</h2>
+            <ul class="tech-stack" role="list">
+                <li class="tech-item"><span class="badge">Python</span> Lenguaje principal</li>
+                <li class="tech-item"><span class="badge">KivyMD</span> Interfaz gráfica</li>
+                <li class="tech-item"><span class="badge">SQLite</span> Base de datos</li>
+                <li class="tech-item"><span class="badge">Material Design</span> Estilo visual</li>
+            </ul>
+        </section>
+        <section aria-labelledby="estructura-bd">
+            <h2 id="estructura-bd">Estructura de la Base de Datos</h2>
+            <p>La aplicación crea automáticamente una base de datos SQLite llamada <code>Base.db</code> con las siguientes tablas:</p>
+            <ul>
+                <li><strong>Estudiantes</strong>: Almacena información personal de los estudiantes</li>
+                <li><strong>Notas</strong>: Registra las calificaciones asociadas a cada estudiante</li>
+            </ul>
+        </section>
+        <section aria-labelledby="flujo-trabajo">
+            <h2 id="flujo-trabajo">Flujo de Trabajo</h2>
+            <ol>
+                <li>Crear la estructura de la base de datos</li>
+                <li>Registrar estudiantes con sus datos personales</li>
+                <li>Visualizar y administrar los registros existentes</li>
+                <li>Asignar y editar calificaciones por práctica</li>
+                <li>Consultar promedios y notas acumuladas</li>
+            </ol>
+        </section>
+        <section aria-labelledby="requisitos">
+            <h2 id="requisitos">Requisitos del Sistema</h2>
+            <ul>
+                <li>Python 3.x</li>
+                <li>Bibliotecas: Kivy, KivyMD, SQLite3</li>
+                <li>Sistema operativo: Windows, Linux o macOS</li>
+            </ul>
+        </section>
+        <section aria-labelledby="instalacion">
+            <h2 id="instalacion">Instalación</h2>
+            <p>Para ejecutar EVAP, siga estos pasos:</p>
+            <ol>
+                <li>Instale Python 3.x desde <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org</a></li>
+                <li>Instale las dependencias necesarias:
+                    <pre><code lang="bash">pip install kivy kivymd sqlite3</code></pre>
+                </li>
+                <li>Descargue los archivos de la aplicación</li>
+                <li>Ejecute el archivo principal:
+                    <pre><code lang="bash">python main.py</code></pre>
+                </li>
+            </ol>
+        </section>
+        <section aria-labelledby="licencia">
+            <h2 id="licencia">Licencia</h2>
+            <p>Este proyecto está bajo licencia MIT. Consulte el archivo LICENSE para más detalles.</p>
+        </section>
+    </main>
 </body>
 </html>
